@@ -18,7 +18,7 @@
   	  <router-link to="changCity" class="guess_city">
   	    <div class="city clearfix">  	    	
   	      <span>{{guessCity}}</span> 	  	 
-  	      <icon name="angle-right" scale="1.5" class="float_right" ></icon>  	    	  	    
+  	      <icon name="angle-right"  class="float_right" scale="3.5"></icon>  	    	  	    
   	    </div>
   	  </router-link>  
   	</nav>
@@ -30,10 +30,8 @@
   
 </template>
 <script>
-import Vue from 'vue'
+
 import {api} from '../global/api';
-import { Header } from 'mint-ui';
-Vue.component(Header.name, Header);
 
 export default{
   data(){
@@ -46,7 +44,7 @@ export default{
   	    getData(){
   	    	this.$http.get(api.getHotCityList).then(response => {
 
-  	    		var data = response.data.data;
+  	    		var data = response.data;
   	    		console.log(data);
 
   	    		this.HotCityList = data;
@@ -57,6 +55,11 @@ export default{
   			    alert("加载data-foodlist.json文件失败");
   			});
   	    },
+  },
+  mounted(){
+  	console.log("jjjjj",this.HotCityList);
+  	this.getData();
+
   }
 }
 
@@ -70,16 +73,19 @@ export default{
 }
 #positioning .mint-header{
   height: 1.95rem;
+  padding:0 .4rem;
 }
 #positioning .mint-header .mint-button{
   font-size:  .65rem;
+  height:.8rem!important;
 }
+
 #positioning .cityLocation{
   margin-bottom: .4rem;
   padding-top: 2.35rem;
 
 }
-#positioning .cityLocation span:nth-child(1){
+#positioning .cityLocation  span:nth-child(1){
   float:left;
   color: #666;
   font-size: .55rem;
@@ -94,20 +100,23 @@ export default{
   clear: both;
 }
 #positioning .cityLocation .cityTips{
-  padding: 0 10px;
+  padding: 0 .4rem;
   border-bottom: 1px solid #e4e4e4;
   line-height: 1.45rem;
 }
 #positioning .city{
-  padding: 0.35rem 10px;
+  padding: 0.35rem .4rem;
   color:#9f9f9f;
   border-bottom: 2px solid #e4e4e4;
  
 }
+#positioning .city span:nth-child(1){
+  color:#3190e8;
+}
 #positioning .city .guess_city span{
   font-weight: 400;
   font-size: 0.65rem;
-  color:#3190e8;
+  
 }
 .fa-icon{
 	color:#9f9f9f!important;
